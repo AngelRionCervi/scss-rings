@@ -1,0 +1,102 @@
+$mainColor: white;
+$circleSizeMult: 0.45;
+
+
+@mixin circle {
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $mainColor;
+}
+
+.title{
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+}
+
+.title > ul > li{
+  display:inline-block;
+}
+
+.h1title{
+  font-size: 120%;
+}
+
+.tableLi{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.lilcirc{
+  @include circle;
+}
+
+.bigcirc{
+  @include circle;
+  width: 150px;
+  height: 150px;
+}
+
+.wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.circles-wrap{
+  height: 50%;
+  width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+@for $i from 1 through 15 {
+  .circleLeft:nth-child(#{$i}) {
+    @include circle;
+    position: absolute;
+    right: 5px*($i*1.2);
+    @if $i % 2 == 0 {
+      top: 50%-($i*5);
+      width: 50px*($i*$circleSizeMult);
+      height: 50px*($i*$circleSizeMult);
+    }@else{
+      top: 50%-($i*-0.5);
+      width: 50px*($circleSizeMult*($i - 1));
+      height: 50px*($circleSizeMult*($i - 1));
+    }
+  }
+}
+
+@for $i from 1 through 15 {
+  .circleRight:nth-child(#{$i}) {
+    @include circle;
+    position: absolute;
+    left: 5px*($i*1.2);
+    width: 50px*($i*$circleSizeMult);
+    height: 50px*($i*$circleSizeMult);
+    @if $i % 2 == 0 {
+      top: 50%-($i*5);
+      width: 50px*($i*$circleSizeMult);
+      height: 50px*($i*$circleSizeMult);
+    }@else{
+      top: 50%-($i*-0.5);
+      width: 50px*($circleSizeMult*($i - 1));
+      height: 50px*($circleSizeMult*($i - 1));
+    }
+  }
+}
+
